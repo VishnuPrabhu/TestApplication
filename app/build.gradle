@@ -1,0 +1,129 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdk rootProject.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.vishnu.testapplication"
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            // For Development
+            minifyEnabled false
+        }
+        staging {
+            // For CI/CD - Jenkins
+            minifyEnabled false
+            testCoverageEnabled true
+        }
+        release {
+            // For Production
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "releaseType"
+    productFlavors {
+        mock {
+            buildConfigField "String", "MOCK_ENABLE", "\"true\""
+            dimension "releaseType"
+            applicationIdSuffix = ".mock"
+        }
+        prod {
+            buildConfigField "String", "MOCK_ENABLE", "\"false\""
+            dimension "releaseType"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    addTestOptions()
+    ignoreMockRelease()
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
+    implementation deps.app.values()
+    implementation deps.androidx.values()
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt deps.kapt.values()
+
+    // retrofit
+    implementation 'com.google.code.gson:gson:2.8.7'
+    def retrofitVersion = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
+
+    // KTX
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
+
+    // Koin
+    def koin_version = "3.1.3"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+
+    testImplementation deps.testArtifacts.values()
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+def addTestOptions() {
+    // Always show the result of every unit test, even if it passes.
+    android.testOptions.unitTests {
+        includeAndroidResources = true
+
+        all {
+            testLogging {
+                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            }
+        }
+    }
+}
+
+def ignoreMockRelease() {
+    // Remove mockRelease as it's not needed.
+    android.variantFilter { variant ->
+        if (variant.buildType.name == 'release'
+                && variant.getFlavors().get(0).name == 'mock') {
+            variant.setIgnore(true)
+        }
+        if (variant.buildType.name == 'staging'
+                && variant.getFlavors().get(0).name == 'prod') {
+            variant.setIgnore(true)
+        }
+    }
+}
