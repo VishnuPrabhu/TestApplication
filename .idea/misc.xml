@@ -8,11 +8,14 @@
         <entry key="app/src/main/res/drawable/bg_toolbar_color.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/ic_login.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/ic_logout.xml" value="0.24375" />
+        <entry key="app/src/main/res/drawable/ic_password_login.xml" value="0.24375" />
+        <entry key="app/src/main/res/drawable/ic_send.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/indicator_default.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/indicator_selected.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/selector_btn_login.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/selector_tab.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/shape_btn_fingerprint.xml" value="0.1824074074074074" />
+        <entry key="app/src/main/res/layout/bottomsheet_payees_list.xml" value="0.22760416666666666" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_test.xml" value="0.25" />
@@ -22,9 +25,11 @@
         <entry key="app/src/main/res/layout/launch_welcome.xml" value="0.29791666666666666" />
         <entry key="app/src/main/res/layout/login_activity.xml" value="0.1" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/payee_list_item.xml" value="0.22760416666666666" />
         <entry key="app/src/main/res/layout/progressbar_dialog.xml" value="0.22760416666666666" />
         <entry key="app/src/main/res/layout/shimmer_transactions_list.xml" value="0.22760416666666666" />
         <entry key="app/src/main/res/layout/transaction_list_item.xml" value="0.29333333333333333" />
+        <entry key="app/src/main/res/layout/transfer_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/viewpager_welcome_fragment.xml" value="0.22760416666666666" />
         <entry key="app/src/main/res/layout/widget_account_card.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_home.xml" value="0.15462962962962962" />

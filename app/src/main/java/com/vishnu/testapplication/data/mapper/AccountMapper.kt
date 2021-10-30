@@ -1,9 +1,6 @@
 package com.vishnu.testapplication.data.mapper
 
-import com.vishnu.testapplication.data.AccountDetails
-import com.vishnu.testapplication.data.AccountSummary
-import com.vishnu.testapplication.data.Transaction
-import com.vishnu.testapplication.data.TransactionSummary
+import com.vishnu.testapplication.data.*
 import com.vishnu.testapplication.domain.util.toCurrencyAmount
 import com.vishnu.testapplication.domain.util.toNumber
 import com.vishnu.testapplication.domain.util.toNumberString
@@ -34,5 +31,11 @@ object TransactionsMapper {
             it.description.orEmpty(),
             amount.toCurrencyAmount(it.currency.orEmpty())
         )
+    }
+}
+
+object PayeesMapper {
+    fun map(it: Payees): List<Payee> {
+        return it.payees.orEmpty()
     }
 }

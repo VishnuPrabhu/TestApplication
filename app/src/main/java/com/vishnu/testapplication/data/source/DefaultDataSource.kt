@@ -1,13 +1,14 @@
 package com.vishnu.testapplication.data.source
 
+import androidx.annotation.TransitionRes
 import com.vishnu.testapplication.data.*
 import com.vishnu.testapplication.data.mapper.AccountMapper
+import com.vishnu.testapplication.data.mapper.PayeesMapper
 import com.vishnu.testapplication.data.mapper.TransactionsMapper
 import com.vishnu.testapplication.domain.Result
 import com.vishnu.testapplication.data.source.local.LocalMobileBankingDataSource
 import com.vishnu.testapplication.data.source.remote.RemoteMobileBankingDataSource
 import com.vishnu.testapplication.di.io
-import com.vishnu.testapplication.domain.data
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -34,7 +35,7 @@ class DefaultDataSource(
         return if (cacheResponse == null || forceUpdate) {
             withContext(ioDispatcher) {
                 val balance = remoteDataSource.accountDetails()
-                when(balance) {
+                when (balance) {
                     is Result.Success -> {
                         val summary = AccountMapper.map(balance.data).also {
                             localDataSource.cacheAccountDetails(it)
@@ -56,7 +57,7 @@ class DefaultDataSource(
         return if (cacheResponse == null || forceUpdate) {
             withContext(ioDispatcher) {
                 val transactions = remoteDataSource.transactionsList()
-                when(transactions) {
+                when (transactions) {
                     is Result.Success -> {
                         val transactionsSummary = transactions.data.transactions.map {
                             TransactionsMapper.map(it)
@@ -74,6 +75,42 @@ class DefaultDataSource(
             }
         } else {
             Result.Success(cacheResponse)
+        }
+    }
+
+    override suspend fun getPayees(forceUpdate: Boolean): Result<List<Payee>> {
+        val cacheResponse = localDataSource.payeesList()
+
+        return if (cacheResponse == null || forceUpdate) {
+            withContext(ioDispatcher) {
+                val payees = remoteDataSource.payeesList()
+                when (payees) {
+                    is Result.Success -> {
+                        val payeesList = payees.data.let {
+                            PayeesMapper.map(it)
+                        }.also {
+                            localDataSource.cachePayeesList(it)
+                        }
+                        Result.Success(payeesList)
+                    }
+                    is Result.Loading -> Result.Loading
+                    is Result.Error -> {
+                        localDataSource.clearPayeesList()
+                        Result.Error(payees.exception)
+                    }
+                }
+            }
+        } else {
+            Result.Success(cacheResponse)
+        }
+    }
+
+    /**
+     * For Transfer, no need to cache, as there is no use of this.
+     */
+    override suspend fun transfer(request: TransferRequest): Result<TransferResponse> {
+        return withContext(ioDispatcher) {
+            remoteDataSource.transfer(request)
         }
     }
 

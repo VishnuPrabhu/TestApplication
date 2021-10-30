@@ -28,4 +28,17 @@
     <string name="cancel">cancel</string>
     <string name="logout_message">You will be logged out securely from our application.</string>
     <string name="refresh">refresh</string>
+    <string name="hint_recipient">Recipient</string>
+    <string name="helper_recipient">Select the payee to transfer</string>
+    <string name="hint_date">Date of transfer</string>
+    <string name="helper_calendar">Select the date</string>
+    <string name="hint_comments">Comments</string>
+    <string name="hint_amount">Amount</string>
+    <string name="helper_comments">Enter you comments</string>
+    <string name="helper_amount">How much you want to transfer</string>
+    <string name="currency">SGD</string>
+    <string name="general_error">We are unable to reach our network, please try again.</string>
+    <string name="go_back">Go Back</string>
+    <string name="btn_transfer">Transfer</string>
+    <string name="transaction_success">Success!</string>
 </resources>

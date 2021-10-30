@@ -32,3 +32,5 @@ fun Double.toNumberString(): String {
 private fun String.digits(): String {
     return this.replace(Regex("[^-\\d.]"), "")
 }
+
+fun String?.isNotNullOrEmpty() = this != null && this.isNotEmpty()

@@ -12,6 +12,7 @@ import com.vishnu.testapplication.data.source.local.SessionHelper
 import com.vishnu.testapplication.data.source.remote.RemoteMobileBankingDataSource
 import com.vishnu.testapplication.domain.*
 import com.vishnu.testapplication.ui.home.HomeViewModel
+import com.vishnu.testapplication.ui.home.TransferViewModel
 import com.vishnu.testapplication.ui.login.LaunchViewModel
 import com.vishnu.testapplication.ui.login.LoginViewModel
 import com.vishnu.testapplication.ui.welcome.PlaceHolderViewModel
@@ -54,6 +55,13 @@ val homeModule = module {
     factory { GetAccountDetailsUseCase(get()) }
     factory { GetTransactionDetailsUseCase(get()) }
     viewModel { HomeViewModel(get(), get(), get()) }
+}
+
+val transferModule = module {
+    factory { GetPayeesUseCase(get()) }
+    factory { TransferAmountUseCase(get()) }
+    factory { InvalidateSessionUseCase(get()) }
+    viewModel { TransferViewModel(get(), get(), get()) }
 }
 
 val coroutinesModule = module {

@@ -1,6 +1,8 @@
 package com.vishnu.testapplication.data
 
+import android.os.Parcelable
 import androidx.annotation.Keep
+import kotlinx.android.parcel.Parcelize
 
 @Keep
 data class AccountSummary(
@@ -16,3 +18,11 @@ data class TransactionSummary(
     val description: String = "",
     val amount: String = "",
 )
+
+@Parcelize
+@Keep
+data class Payee(
+    val id: String,
+    val accountHolderName: String,
+    val accountNo: String
+): Parcelable

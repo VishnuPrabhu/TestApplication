@@ -44,5 +44,17 @@ class LocalMobileBankingDataSource {
         cache.remove(LocalCache.Transactions)
     }
 
+    fun payeesList(): List<Payee>? {
+        return cache[LocalCache.Payees] as? List<Payee>
+    }
+
+    fun cachePayeesList(value: List<Payee>?) {
+        value?.let { cache[LocalCache.Payees] = it }
+    }
+
+    fun clearPayeesList() {
+        cache.remove(LocalCache.Payees)
+    }
+
 
 }

@@ -87,7 +87,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/welcomeBtn"
+            android:id="@+id/btnTransfer"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="32dp"
@@ -120,9 +120,9 @@
             app:icon="@drawable/ic_fingerprint"
             app:iconGravity="end"
             app:iconTint="@android:color/holo_red_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/welcomeBtn"
+            app:layout_constraintBottom_toBottomOf="@+id/btnTransfer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/welcomeBtn"
+            app:layout_constraintTop_toTopOf="@+id/btnTransfer"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <androidx.constraintlayout.widget.Guideline

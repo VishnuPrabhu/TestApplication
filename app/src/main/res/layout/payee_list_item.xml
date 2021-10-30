@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.vishnu.testapplication.domain.util.StringUtilsKt" />
+
+        <variable
+            name="viewmodel"
+            type="com.vishnu.testapplication.data.Payee" />
+    </data>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:width="80dp"
+        android:drawablePadding="24dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp"
+        android:text='@{viewmodel.accountHolderName ?? ""}'
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_username_login"
+        tools:text="Payee name" />
+</layout>
