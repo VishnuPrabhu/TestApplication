@@ -20,9 +20,10 @@ import java.util.*
 
 
 const val DD_MMM = "dd MMM"                                 // 12 Sep
+const val DD_MMM_YYYY = "dd MMM, yyyy"                      // 12 Sep, 2021
 const val YYYYMMDDHHMMSS = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"   // 2021-09-12T02:13:03.054Z
 
-fun Date?.toDateString(format: String = DD_MMM): String {
+fun Date?.toDateString(format: String = DD_MMM_YYYY): String {
     if (this == null) {
         return ""
     }
@@ -55,7 +56,7 @@ fun String?.toTransferCalendar(): Calendar {
         Calendar.getInstance()
     } else {
         try {
-            val dateFormat = SimpleDateFormat(DD_MMM, Locale.US)
+            val dateFormat = SimpleDateFormat(DD_MMM_YYYY, Locale.US)
             val fromDate = dateFormat.parse(this)
             fromDate
         } catch (e: Exception) {
