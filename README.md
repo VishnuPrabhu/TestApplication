@@ -13,7 +13,7 @@ This application has the following screens:
 ------------
 The Launch screen is shown, when the app is doing initial setup and initializations. In this case, it will show for a seconds.
 It checks if the user is first-time visiting the application or already visited. If it is first time, then we will show the Welcome screen.
-![Android Launch Screen](screenshots/o1.jpeg =200)
+![Android Launch Screen](screenshots/o1.jpeg)
 
 #### Welcome Screen
 ------------
@@ -21,14 +21,14 @@ The Welcome screen is shown for the first time to user to introduce the new feat
 The login button will be enabled only if,
 - User name must be greater than 3 digits
 - password must be greater than 3 digits
-![Android Welcome Screen](screenshots/o2.jpeg x200)
+![Android Welcome Screen](screenshots/o2.jpeg)
   
 #### Login Screen
 ------------
 The Login screen, is useful to enter the application with username and password. Here the valid-mock username is **ocbc** and password is **123456**. Other values are invalid.
 
-![Android Login Screen](screenshots/o3.jpeg x200)
-![Android Login Screen](screenshots/o4.jpeg x250)
+![Android Login Screen](screenshots/o3.jpeg)
+![Android Login Screen](screenshots/o4.jpeg)
 
 #### Home Screen
 ------------
