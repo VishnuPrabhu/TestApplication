@@ -1,10 +1,12 @@
 package com.vishnu.testapplication.base
 
 import android.app.Application
+import android.content.Context
 import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.gson.Gson
 import com.vishnu.testapplication.data.source.MobileBankingApiClient
 import com.vishnu.testapplication.data.source.MobileBankingApiClient.createMock
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,6 +28,8 @@ import org.koin.core.context.stopKoin
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.test.KoinTest
+import org.koin.test.mock.MockProviderRule
+import org.mockito.Mockito
 import org.robolectric.annotation.Config
 
 @Ignore("BaseTest")
@@ -35,6 +39,11 @@ import org.robolectric.annotation.Config
 open class AndroidUnitTest : KoinTest, KoinComponent {
 
     val context = ApplicationProvider.getApplicationContext<Application>()
+
+    @get:Rule
+    val mockProvider = MockProviderRule.create { clazz ->
+        Mockito.mock(clazz.java)
+    }
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()

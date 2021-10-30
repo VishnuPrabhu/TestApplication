@@ -37,12 +37,12 @@ class MockDataSource(val delegate: BehaviorDelegate<MobileBankingApi>, context: 
         return delegate.returningResponse(response).transfer(request)
     }
 
-    private fun <T> Context.getMockResponse(path: String, type: Class<T>): T {
-        return assets.open(path).use { inputStream ->
-            val mockText = inputStream.bufferedReader().use { it.readText() }
-            val mockResponse = Gson().fromJson(mockText, type)
-            mockResponse
-        }
-    }
+}
 
+fun <T> Context.getMockResponse(path: String, type: Class<T>): T {
+    return assets.open(path).use { inputStream ->
+        val mockText = inputStream.bufferedReader().use { it.readText() }
+        val mockResponse = Gson().fromJson(mockText, type)
+        mockResponse
+    }
 }

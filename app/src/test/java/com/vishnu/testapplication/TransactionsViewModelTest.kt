@@ -3,37 +3,35 @@ package com.vishnu.testapplication
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.given
 import com.vishnu.testapplication.base.AndroidUnitTest
-import com.vishnu.testapplication.data.Data
-import com.vishnu.testapplication.data.Payee
-import com.vishnu.testapplication.data.TransferRequest
-import com.vishnu.testapplication.data.TransferResponse
+import com.vishnu.testapplication.base.getOrAwaitValue
+import com.vishnu.testapplication.data.*
+import com.vishnu.testapplication.data.mapper.PayeesMapper
 import com.vishnu.testapplication.data.source.MobileBankingRepository
+import com.vishnu.testapplication.data.source.mock.getMockResponse
 import com.vishnu.testapplication.di.repositoryModule
 import com.vishnu.testapplication.di.transferModule
 import com.vishnu.testapplication.domain.*
-import com.vishnu.testapplication.base.getOrAwaitValue
 import com.vishnu.testapplication.ui.home.TransferViewModel
 import kotlinx.coroutines.runBlocking
-import org.junit.Rule
 import org.junit.Test
 import org.koin.core.component.inject
 import org.koin.core.context.loadKoinModules
-import org.koin.test.mock.MockProviderRule
 import org.koin.test.mock.declareMock
-import org.mockito.Mockito
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class TransactionsViewModelTest : AndroidUnitTest() {
 
-    @get:Rule
-    val mockProvider = MockProviderRule.create { clazz ->
-        Mockito.mock(clazz.java)
-    }
-
     @Test
     fun testGetPayeesUseCase() = runBlocking {
         loadKoinModules(listOf(repositoryModule, transferModule))
+
+        val mock = declareMock<MobileBankingRepository>()
+        given(mock.getPayees(any())).willAnswer {
+            val remoteResponse = context.getMockResponse("mocks/payees.json", Payees::class.java)
+            val mockResponse = PayeesMapper.map(remoteResponse)
+            Result.Success(mockResponse)
+        }
 
         val useCase: GetPayeesUseCase by inject()
         val result = useCase.invoke()
@@ -99,5 +97,7 @@ class TransactionsViewModelTest : AndroidUnitTest() {
                 "Description   : test send \n" +
                 "Amount        : 1")
     }
+
+
 
 }

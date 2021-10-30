@@ -1,9 +1,13 @@
 package com.vishnu.testapplication
 
 import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.given
 import com.vishnu.testapplication.base.AndroidUnitTest
 import com.vishnu.testapplication.base.getOrAwaitValue
+import com.vishnu.testapplication.data.*
+import com.vishnu.testapplication.data.source.MobileBankingRepository
 import com.vishnu.testapplication.data.source.local.SessionHelper
+import com.vishnu.testapplication.data.source.mock.getMockResponse
 import com.vishnu.testapplication.di.loginModule
 import com.vishnu.testapplication.di.repositoryModule
 import com.vishnu.testapplication.domain.LoginUseCase
@@ -17,6 +21,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.loadKoinModules
 import org.koin.test.mock.declare
+import org.koin.test.mock.declareMock
 import org.mockito.Mockito.mock
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -30,11 +35,18 @@ class LoginViewModelTest : AndroidUnitTest(), KoinComponent {
         declare {
             mock(SessionHelper::class.java)
         }
+        val mock = declareMock<MobileBankingRepository>()
+        given(mock.login(any())).willAnswer {
+            val response = context.getMockResponse("mocks/login.json", LoginResponse::class.java)
+            Result.Success(response)
+        }
+
         val loginViewModel: LoginViewModel by inject()
         loginViewModel.login()
 
         val result = loginViewModel.login.getOrAwaitValue(2)
         assertTrue { result.peekContent() is Result.Success }
+        assertTrue { result.peekContent().data?.token == "1234567890qwertyuiop" }
     }
 
     @Test

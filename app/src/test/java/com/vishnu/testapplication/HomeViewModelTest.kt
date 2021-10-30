@@ -1,5 +1,7 @@
 package com.vishnu.testapplication
 
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.given
 import com.vishnu.testapplication.base.AndroidUnitTest
 import com.vishnu.testapplication.di.homeModule
 import com.vishnu.testapplication.di.repositoryModule
@@ -8,11 +10,20 @@ import com.vishnu.testapplication.domain.GetTransactionDetailsUseCase
 import com.vishnu.testapplication.domain.data
 import com.vishnu.testapplication.domain.util.digits
 import com.vishnu.testapplication.base.getOrAwaitValue
+import com.vishnu.testapplication.data.AccountDetails
+import com.vishnu.testapplication.data.Payees
+import com.vishnu.testapplication.data.Transactions
+import com.vishnu.testapplication.data.mapper.AccountMapper
+import com.vishnu.testapplication.data.mapper.TransactionsMapper
+import com.vishnu.testapplication.data.source.MobileBankingRepository
+import com.vishnu.testapplication.data.source.mock.getMockResponse
+import com.vishnu.testapplication.domain.Result
 import com.vishnu.testapplication.ui.home.HomeViewModel
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.koin.core.component.inject
 import org.koin.core.context.loadKoinModules
+import org.koin.test.mock.declareMock
 import kotlin.test.assertEquals
 
 class HomeViewModelTest : AndroidUnitTest() {
@@ -20,6 +31,13 @@ class HomeViewModelTest : AndroidUnitTest() {
     @Test
     fun testBalanceUseCase() = runBlocking {
         loadKoinModules(listOf(repositoryModule, homeModule))
+
+        val mock = declareMock<MobileBankingRepository>()
+        given(mock.getAccountDetails(any())).willAnswer {
+            val remoteResponse = context.getMockResponse("mocks/balance.json", AccountDetails::class.java)
+            val mockResponse = AccountMapper.map(remoteResponse)
+            Result.Success(mockResponse)
+        }
 
         val useCase: GetAccountDetailsUseCase by inject()
         val result = useCase.invoke()
@@ -30,6 +48,13 @@ class HomeViewModelTest : AndroidUnitTest() {
     @Test
     fun testTransactionsUseCase() = runBlocking {
         loadKoinModules(listOf(repositoryModule, homeModule))
+
+        val mock = declareMock<MobileBankingRepository>()
+        given(mock.getTransactions(any())).willAnswer {
+            val remoteResponse = context.getMockResponse("mocks/transactions.json", Transactions::class.java)
+            val mockResponse = remoteResponse.transactions.map { TransactionsMapper.map(it) }
+            Result.Success(mockResponse)
+        }
 
         val useCase: GetTransactionDetailsUseCase by inject()
         val result = useCase.invoke()

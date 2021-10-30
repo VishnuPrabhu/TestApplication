@@ -30,6 +30,17 @@ class LaunchViewModelTest : AndroidUnitTest() {
     }
 
     @Test
+    fun testLaunchApplication() = runBlocking {
+        val mockUseCase = mock(OnBoardingCompletedUseCase::class.java)
+        given(mockUseCase.invoke()).willReturn(false)
+        val viewModel = LaunchViewModel(mockUseCase)
+
+        viewModel.launch()
+        val result = viewModel.launchApplication.getOrAwaitValue()
+        assertEquals(Unit, result.peekContent())
+    }
+
+    @Test
     fun testLaunchSecondTime() = runBlocking {
         val mockUseCase = mock(OnBoardingCompletedUseCase::class.java)
         given(mockUseCase.invoke()).willReturn(true)
