@@ -20,14 +20,14 @@ class LoginViewModel(
     val userName = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
-    val isLoginButtonEnable = /*MediatorLiveData<Boolean>().apply {
+    val isLoginButtonEnable = MediatorLiveData<Boolean>().apply {
         fun validUserName() = userName.value.orEmpty().length > 3
         fun validPassword() = password.value.orEmpty().length > 3
 
         fun validate() = validUserName() && validPassword()
         addSource(userName) { this.value = validate() }
         addSource(password) { this.value = validate() }
-    }*/true
+    }
 
     /**
      * Calls Login asynchronously with CoroutineLiveData (Livedata inbuild with CoroutineContext & CoroutineScope)

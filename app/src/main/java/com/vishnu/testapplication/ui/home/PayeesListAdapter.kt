@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.vishnu.testapplication.data.Payee
 import com.vishnu.testapplication.databinding.PayeeListItemBinding
+import com.vishnu.testapplication.ui.util.ACCOUNT_NUMBER_FORMATTER
+import com.vishnu.testapplication.ui.util.NumberFormatTextWatchers
 
 class PayeesListAdapter : ListAdapter<Payee, PayeeViewHolder>(PayeeDiff()) {
     private var clickListener: PayeeClickListener? = null
@@ -48,8 +50,8 @@ class PayeeViewHolder(val binding: PayeeListItemBinding, onClick: (Int) -> Unit)
         binding.root.setOnClickListener {
             onClick(bindingAdapterPosition)
         }
+        binding.accountNumber.addTextChangedListener(ACCOUNT_NUMBER_FORMATTER)
     }
-
 
     fun bind(item: Payee) {
         binding.viewmodel = item

@@ -32,6 +32,8 @@ fun TextView.setTextVisible(value: String) {
     isVisible = value.isNotEmpty()
 }
 
+val ACCOUNT_NUMBER_FORMATTER = NumberFormatTextWatchers(limit= "-")
+
 class NumberFormatTextWatchers(val chunk: Int = 3, val max: Int = 100, val limit: String = " ") : TextWatcher {
     private var current = ""
 

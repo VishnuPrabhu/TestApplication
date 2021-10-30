@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.vishnu.testapplication.databinding.WidgetAccountCardBinding
+import com.vishnu.testapplication.ui.util.ACCOUNT_NUMBER_FORMATTER
+import com.vishnu.testapplication.ui.util.NumberFormatTextWatchers
 
 class AccountCard(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
 
@@ -50,4 +52,8 @@ class AccountCard(context: Context, attrs: AttributeSet?) : FrameLayout(context,
                 binding.shimmerLayout.hideShimmer()
             }
         }
+
+    init {
+        binding.subtitle1.addTextChangedListener(ACCOUNT_NUMBER_FORMATTER)
+    }
 }

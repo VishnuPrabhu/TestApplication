@@ -20,7 +20,7 @@ object DialogsController {
     fun showAlertDialog(context: Activity, title: String, message: String = "", okBtn: String, onClick: () -> Unit = {}) {
         MaterialAlertDialogBuilder(context)
             .setTitle(title)
-            .setMessage(null)
+            .setMessage(message)
             .setPositiveButton(okBtn) { dialog, which ->
                 dialog.dismiss()
                 onClick()

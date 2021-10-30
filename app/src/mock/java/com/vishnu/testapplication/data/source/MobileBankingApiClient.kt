@@ -10,18 +10,25 @@ import retrofit2.mock.BehaviorDelegate
 import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+
+
+
 
 
 val BASE_URL = "http://localhost:8080"
 
 object MobileBankingApiClient {
 
-    val LOGIN_AUTHORIZATION_TOKEN = ""
-
     private fun create(): MobileBankingApi {
         // OkHttpClient to add interceptors
         val builder = OkHttpClient.Builder()
         builder.interceptors().add(ApiTokenInterceptor())
+        if (BuildConfig.BUILD_TYPE == "debug") {
+            val httpLoggingInterceptor = HttpLoggingInterceptor()
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            builder.networkInterceptors().add(httpLoggingInterceptor)
+        }
         val client = builder.build()
         // Retrofit Builder
         val retrofit = Retrofit.Builder()

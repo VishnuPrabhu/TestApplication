@@ -2,6 +2,8 @@ package com.vishnu.testapplication.ui.home
 
 import android.os.Bundle
 import android.view.*
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -129,5 +131,11 @@ class HomeFragment : Fragment() {
         binding.makeTransfer.setOnClickListener {
             findNavController().navigate(R.id.transferFragment)
         }
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showLogoutDialog()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 }
