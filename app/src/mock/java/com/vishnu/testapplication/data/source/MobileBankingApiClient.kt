@@ -20,7 +20,7 @@ val BASE_URL = "http://localhost:8080"
 
 object MobileBankingApiClient {
 
-    private fun create(): MobileBankingApi {
+    internal fun create(): MobileBankingApi {
         // OkHttpClient to add interceptors
         val builder = OkHttpClient.Builder()
         builder.interceptors().add(ApiTokenInterceptor())
@@ -39,7 +39,7 @@ object MobileBankingApiClient {
         return retrofit.create(MobileBankingApi::class.java)
     }
 
-    private fun createMock(): MobileBankingApi {
+    internal fun createMock(): MobileBankingApi {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)

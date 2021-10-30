@@ -29,7 +29,7 @@ fun Double.toNumberString(): String {
     return toBigDecimal().toPlainString()
 }
 
-private fun String.digits(): String {
+fun String.digits(): String {
     return this.replace(Regex("[^-\\d.]"), "")
 }
 

@@ -28,7 +28,6 @@ class LaunchViewModel(
      * Performs Launch time initialization or DeepLink parsing.
      */
     fun launch() = viewModelScope.launch {
-        delay(1000)
         _launchApplication.value = Event(Unit)
     }
 }

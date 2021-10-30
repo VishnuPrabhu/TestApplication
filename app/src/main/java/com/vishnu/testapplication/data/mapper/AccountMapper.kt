@@ -21,9 +21,9 @@ object AccountMapper {
 object TransactionsMapper {
     fun map(it: Transaction): TransactionSummary {
         val amount = if (it.type == "transfer") {
-            it.amount.toNumber()
-        } else {
             -it.amount.toNumber()
+        } else {
+            it.amount.toNumber()
         }.toNumberString()
         return TransactionSummary(
             it.id.orEmpty(),

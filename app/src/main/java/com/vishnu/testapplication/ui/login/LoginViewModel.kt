@@ -38,7 +38,7 @@ class LoginViewModel(
         liveData(ioDispatcher) {
             emit(Result.Loading)
             val loginRequest = LoginRequest(username = userName.value.orEmpty(), password = password.value.orEmpty())
-            val response = loginUseCase.login(loginRequest)
+            val response = loginUseCase(loginRequest)
             emit(response)
         }
     }.map { Event(it) } // map to Single Event for one time EventObserver
