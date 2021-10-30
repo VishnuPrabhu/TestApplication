@@ -1,19 +1,15 @@
-package com.vishnu.testapplication.ui.login
+package com.vishnu.testapplication.ui.welcome
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.tabs.TabLayoutMediator
 import com.vishnu.testapplication.R
 import com.vishnu.testapplication.databinding.LaunchWelcomeBinding
 import com.vishnu.testapplication.domain.EventObserver
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeFragment : Fragment() {
@@ -34,5 +30,11 @@ class WelcomeFragment : Fragment() {
         viewModel.loginEvent.observe(viewLifecycleOwner, EventObserver {
             findNavController().navigate(R.id.action_login)
         })
+
+        val adapter = PlaceHolderPagerAdapter(requireActivity())
+        binding.viewpager2.adapter = adapter
+        TabLayoutMediator(binding.tabLayout, binding.viewpager2) { tab, position ->
+            // not needed now.
+        }.attach()
     }
 }

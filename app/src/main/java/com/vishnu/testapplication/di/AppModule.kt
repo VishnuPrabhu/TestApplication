@@ -14,7 +14,8 @@ import com.vishnu.testapplication.domain.*
 import com.vishnu.testapplication.ui.home.HomeViewModel
 import com.vishnu.testapplication.ui.login.LaunchViewModel
 import com.vishnu.testapplication.ui.login.LoginViewModel
-import com.vishnu.testapplication.ui.login.WelcomeViewModel
+import com.vishnu.testapplication.ui.welcome.PlaceHolderViewModel
+import com.vishnu.testapplication.ui.welcome.WelcomeViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainCoroutineDispatcher
@@ -41,11 +42,12 @@ val launchModule = module {
     factory { OnBoardingCompletedUseCase(get()) }
     viewModel { LaunchViewModel(get()) }
     viewModel { WelcomeViewModel(get()) }
+    viewModel { PlaceHolderViewModel() }
 }
 
 val loginModule = module {
     factory { LoginUseCase(get()) }
-    viewModel { LoginViewModel(get()) }
+    viewModel { LoginViewModel(get(), get(named("io"))) }
 }
 
 val homeModule = module {

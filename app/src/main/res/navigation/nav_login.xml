@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.vishnu.testapplication.ui.login.WelcomeFragment"
+        android:name="com.vishnu.testapplication.ui.welcome.WelcomeFragment"
         android:label="WelcomeFragment">
         <action
             android:id="@+id/action_login"

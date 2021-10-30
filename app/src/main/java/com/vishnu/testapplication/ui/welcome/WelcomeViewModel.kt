@@ -1,4 +1,4 @@
-package com.vishnu.testapplication.ui.login
+package com.vishnu.testapplication.ui.welcome
 
 import androidx.lifecycle.*
 import com.vishnu.testapplication.domain.Event

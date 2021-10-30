@@ -25,6 +25,10 @@ fun String?.toNumber(): Double {
     return amount.toDoubleOrNull() ?: 0.0
 }
 
+fun Double.toNumberString(): String {
+    return toBigDecimal().toPlainString()
+}
+
 private fun String.digits(): String {
-    return this.replace(Regex("[^\\d.]"), "")
+    return this.replace(Regex("[^-\\d.]"), "")
 }

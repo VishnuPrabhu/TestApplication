@@ -3,8 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LaunchFragment"
-    android:background="@drawable/bg_launch">
+    android:background="@color/white"
+    tools:context=".ui.login.LaunchFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        android:src="@drawable/logo_ocbc" />
 
 
 </FrameLayout>

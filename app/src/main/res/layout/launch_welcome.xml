@@ -7,23 +7,39 @@
 
         <variable
             name="viewModel"
-            type="com.vishnu.testapplication.ui.login.WelcomeViewModel" />
+            type="com.vishnu.testapplication.ui.welcome.WelcomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_login">
+        android:background="@drawable/bg_login"
+        android:padding="24dp">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_ocbc"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toTopOf="@id/welcomeBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent"
+                app:tabBackground="@drawable/selector_tab"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp" />
+        </FrameLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/welcomeBtn"
@@ -31,21 +47,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="68dp"
+            android:layout_marginBottom="32dp"
             android:backgroundTint="#ff0000"
             android:onClick="@{() -> viewModel.setUserOnboarded()}"
-            android:text="Welcome"
+            android:text="@string/get_started"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

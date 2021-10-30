@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.vishnu.testapplication.R
 import com.vishnu.testapplication.domain.EventObserver
@@ -22,7 +23,7 @@ class LaunchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.launchApplication.observe(viewLifecycleOwner, EventObserver {
-            viewModel.isCustomerOnboarded.observe(viewLifecycleOwner, EventObserver { isOnboarded ->
+            viewModel.isCustomerOnboarded.observe(viewLifecycleOwner, Observer { isOnboarded ->
                 if (isOnboarded) {
                     findNavController().navigate(R.id.action_login)
                 } else {

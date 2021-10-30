@@ -142,9 +142,6 @@
                     android:src="@drawable/no_transactions" />
             </LinearLayout>
 
-            <include
-                android:id="@+id/transactions_shimmerLayout"
-                layout="@layout/shimmer_transactions_list" />
 
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button"

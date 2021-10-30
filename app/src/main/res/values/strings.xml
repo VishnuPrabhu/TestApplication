@@ -16,4 +16,16 @@
     <string name="in_your_account">in your account.</string>
     <string name="no_transactions_yet">No transactions yet</string>
     <string name="make_a_transfer">Make a transfer</string>
+    <string name="hint_password">Password</string>
+    <string name="helper_password">Enter you account password</string>
+    <string name="hint_username">Username</string>
+    <string name="helper_username">Enter your account username</string>
+    <string name="btn_login">Login</string>
+    <string name="get_started">Get Started</string>
+    <string name="ok">ok</string>
+    <string name="logout_title">Do you want to logout?</string>
+    <string name="yes_logout">Yes, logout</string>
+    <string name="cancel">cancel</string>
+    <string name="logout_message">You will be logged out securely from our application.</string>
+    <string name="refresh">refresh</string>
 </resources>

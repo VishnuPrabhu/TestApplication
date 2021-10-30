@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.vishnu.testapplication.R
 import com.vishnu.testapplication.domain.Result
 import com.vishnu.testapplication.databinding.LoginFragmentBinding
 import com.vishnu.testapplication.domain.EventObserver
-import com.vishnu.testapplication.ui.ActivityNavigation.navigateToHome
+import com.vishnu.testapplication.ui.ActivityNavigationController.navigateToHome
+import com.vishnu.testapplication.ui.DialogsController.showErrorDialog
+import com.vishnu.testapplication.ui.FragmentNavigationController.hideProgress
+import com.vishnu.testapplication.ui.FragmentNavigationController.showProgress
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -27,12 +31,16 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewmodel
         viewmodel.login.observe(viewLifecycleOwner, EventObserver {
-            val showLoader = it is Result.Loading
             when (it) {
+                is Result.Loading -> {
+                    showProgress()
+                }
                 is Result.Error -> {
-                    // show error
+                    hideProgress()
+                    showErrorDialog(requireActivity(), it.exception.localizedMessage.orEmpty(), getString(R.string.ok))
                 }
                 is Result.Success -> {
+                    hideProgress()
                     requireActivity().navigateToHome(isRoot = true)
                 }
             }

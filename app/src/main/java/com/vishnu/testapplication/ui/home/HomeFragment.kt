@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.vishnu.testapplication.R
 import com.vishnu.testapplication.databinding.HomeFragmentBinding
+import com.vishnu.testapplication.ui.DialogsController.showAlertDialog
 import com.vishnu.testapplication.ui.util.adaptToSwipeLayout
 import com.vishnu.testapplication.ui.util.setupRefreshLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -46,12 +47,7 @@ class HomeFragment : Fragment() {
             }
         })
         viewModel.loadingTransactions.observe(viewLifecycleOwner, Observer { loading ->
-//            binding.transactionsShimmerLayout.layout.isVisible = loading
-//            if (loading) {
-//                binding.transactionsShimmerLayout.layout.showShimmer(true)
-//            } else {
-//                binding.transactionsShimmerLayout.layout.hideShimmer()
-//            }
+            // Shimmer Aniamtion for RecyclerView.
         })
     }
 
@@ -95,11 +91,17 @@ class HomeFragment : Fragment() {
                 return true
             }
             R.id.action_logout -> {
-                // logout
+                showLogoutDialog()
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showLogoutDialog() {
+        showAlertDialog(requireActivity(), getString(R.string.logout_title), getString(R.string.logout_message),
+            getString(R.string.yes_logout), { requireActivity().finish() },
+            getString(R.string.cancel), {})
     }
 
     private fun setUpAppBar() {

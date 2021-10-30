@@ -6,25 +6,28 @@ import com.vishnu.testapplication.domain.Result
 import com.vishnu.testapplication.di.io
 import com.vishnu.testapplication.domain.Event
 import com.vishnu.testapplication.domain.LoginUseCase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class LoginViewModel(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val ioDispatcher: CoroutineDispatcher
 ) : ViewModel(), KoinComponent {
 
     val userName = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
-    val isLoginButtonEnable = /*MediatorLiveData<Boolean>().apply {
-        fun validate() = userName.value.orEmpty().isNotBlank()  && password.value.orEmpty().isNotBlank()
+    val isLoginButtonEnable = MediatorLiveData<Boolean>().apply {
+        fun validUserName() = userName.value.orEmpty().length > 3
+        fun validPassword() = password.value.orEmpty().length > 3
+
+        fun validate() = validUserName() && validPassword()
         addSource(userName) { this.value = validate() }
         addSource(password) { this.value = validate() }
-    }*/true
-
-    private val ioDispatcher = Dispatchers.io
+    }
 
     /**
      * Calls Login asynchronously with CoroutineLiveData (Livedata inbuild with CoroutineContext & CoroutineScope)

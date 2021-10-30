@@ -5,6 +5,7 @@ import com.vishnu.testapplication.domain.Event
 import com.vishnu.testapplication.domain.OnBoardingCompletedUseCase
 import com.vishnu.testapplication.domain.util.WhileViewSubscribed
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
@@ -17,18 +18,17 @@ class LaunchViewModel(
     private val _launchApplication = MutableLiveData<Event<Unit>>()
     val launchApplication: LiveData<Event<Unit>> = _launchApplication
 
-    private val _isCustomerOnboarded: StateFlow<Boolean> = flow {
+    private val _isCustomerOnboarded: Flow<Boolean> = flow {
         val isOnboarded = onBoardingCompletedUseCase()
         emit(isOnboarded)
-    }.stateIn(viewModelScope, WhileViewSubscribed, initialValue = false)
-    val isCustomerOnboarded: LiveData<Event<Boolean>> = _isCustomerOnboarded.asLiveData()
-                                                                            .map { Event(it) }
+    }
+    val isCustomerOnboarded: LiveData<Boolean> = _isCustomerOnboarded.asLiveData()
 
     /**
      * Performs Launch time initialization or DeepLink parsing.
      */
     fun launch() = viewModelScope.launch {
-        //delay(2000)
+        delay(1000)
         _launchApplication.value = Event(Unit)
     }
 }

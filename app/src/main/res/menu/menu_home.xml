@@ -7,11 +7,12 @@
         android:id="@+id/action_refresh"
         android:icon="@drawable/ic_refresh_home"
         android:orderInCategory="100"
-        android:title="@string/logout"
+        android:title="@string/refresh"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_logout"
+        android:icon="@drawable/ic_logout"
         android:orderInCategory="100"
         android:title="@string/logout"
         app:showAsAction="always" />
