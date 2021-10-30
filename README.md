@@ -41,7 +41,7 @@ The user can either do **swipe to refresh** or click on the **refresh** button.
 The **make a transfer** button will navigate to the transfer screen
 ![Android Home Screen](screenshots/o5.jpeg)
 ![Android Home Screen](screenshots/o6.jpeg)
-![Android Home Screen](screenshots/10.jpeg)
+![Android Home Screen](screenshots/o10.jpeg)
 
 #### Transfer Screen
 ------------
@@ -56,9 +56,9 @@ Only after the user enters values for these fields, the transfer button will be 
 
 **When you make a transfer, the result is shown in a dialog.**
 
-![Android Transfer Screen](screenshots/7.jpeg)
-![Android Transfer Screen](screenshots/8.jpeg)
-![Android Transfer Screen](screenshots/9.jpeg)
+![Android Transfer Screen](screenshots/o7.jpeg)
+![Android Transfer Screen](screenshots/o8.jpeg)
+![Android Transfer Screen](screenshots/o9.jpeg)
 
 ## If the transaction is success, then the repository data is invalidated, so when you go back to the HomeScreen, it wil refresh the account balance again.
 
