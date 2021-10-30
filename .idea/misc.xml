@@ -4,14 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-anydpi/ic_fingerprint.xml" value="0.14074074074074075" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_refresh_home.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/drawable/bg_toolbar_color.xml" value="0.24375" />
         <entry key="app/src/main/res/drawable/shape_btn_fingerprint.xml" value="0.1824074074074074" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_test.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/home_activity.xml" value="0.15462962962962962" />
+        <entry key="app/src/main/res/layout/home_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/launch_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/launch_welcome.xml" value="0.29791666666666666" />
         <entry key="app/src/main/res/layout/login_activity.xml" value="0.1" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/shimmer_transactions_list.xml" value="0.22760416666666666" />
+        <entry key="app/src/main/res/layout/transaction_list_item.xml" value="0.29333333333333333" />
+        <entry key="app/src/main/res/layout/widget_account_card.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/menu_home.xml" value="0.15462962962962962" />
         <entry key="app/src/main/res/xml/network_security_config.xml" value="0.159375" />
       </map>
     </option>

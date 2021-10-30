@@ -11,19 +11,20 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class LoginViewModel : ViewModel(), KoinComponent {
+class LoginViewModel(
+    private val loginUseCase: LoginUseCase
+) : ViewModel(), KoinComponent {
 
     val userName = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
-    val isLoginButtonEnable = MediatorLiveData<Boolean>().apply {
+    val isLoginButtonEnable = /*MediatorLiveData<Boolean>().apply {
         fun validate() = userName.value.orEmpty().isNotBlank()  && password.value.orEmpty().isNotBlank()
         addSource(userName) { this.value = validate() }
         addSource(password) { this.value = validate() }
-    }
+    }*/true
 
     private val ioDispatcher = Dispatchers.io
-    private val loginUseCase: LoginUseCase by inject()
 
     /**
      * Calls Login asynchronously with CoroutineLiveData (Livedata inbuild with CoroutineContext & CoroutineScope)

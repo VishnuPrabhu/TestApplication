@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.vishnu.testapplication.domain.util.StringUtilsKt"/>
+
+        <variable
+            name="viewmodel"
+            type="com.vishnu.testapplication.data.TransactionSummary" />
+    </data>
+
+    <TableLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="32dp"
+        android:stretchColumns="*">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/date"
+                android:width="80dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingHorizontal="16dp"
+                android:text='@{viewmodel.date ?? ""}'
+                android:textAlignment="textStart"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textStyle="bold"
+                tools:text="6 Sep" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text='@{viewmodel.description ?? ""}'
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceBody1"
+                tools:text="Transfer to Friend A" />
+
+            <TextView
+                android:id="@+id/amount"
+                android:width="120dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingHorizontal="16dp"
+                android:text='@{viewmodel.amount}'
+                android:textAlignment="textEnd"
+                android:textColor="@{(StringUtilsKt.toNumber(viewmodel.amount) > 0) ? @color/primaryGreen : @color/black}"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="10.00" />
+        </TableRow>
+
+
+    </TableLayout>
+</layout>

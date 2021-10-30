@@ -44,6 +44,6 @@ object MobileBankingApiClient {
     }
 
     fun getApiClient(): MobileBankingApi {
-        return if (!BuildConfig.MOCK_ENABLE.toBoolean()) createMock() else create()
+        return if (BuildConfig.MOCK_ENABLE.toBoolean()) createMock() else create()
     }
 }

@@ -13,7 +13,7 @@ class MobileBankApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MobileBankApplication)
-            modules(launchModule, loginModule)
+            modules(launchModule, loginModule, homeModule)
             modules(repositoryModule, databaseModule)
             modules(coroutinesModule)
         }

@@ -10,14 +10,14 @@ import com.vishnu.testapplication.data.source.local.LocalMobileBankingDataSource
 import com.vishnu.testapplication.data.source.local.SessionDatabase
 import com.vishnu.testapplication.data.source.local.SessionHelper
 import com.vishnu.testapplication.data.source.remote.RemoteMobileBankingDataSource
-import com.vishnu.testapplication.domain.LoginUseCase
-import com.vishnu.testapplication.domain.OnBoardingCompleteUseCase
-import com.vishnu.testapplication.domain.OnBoardingCompletedUseCase
+import com.vishnu.testapplication.domain.*
+import com.vishnu.testapplication.ui.home.HomeViewModel
 import com.vishnu.testapplication.ui.login.LaunchViewModel
 import com.vishnu.testapplication.ui.login.LoginViewModel
 import com.vishnu.testapplication.ui.login.WelcomeViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainCoroutineDispatcher
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -27,6 +27,7 @@ import org.koin.java.KoinJavaComponent.getKoin
 
 val repositoryModule = module {
     single { LocalMobileBankingDataSource() }
+    factory { DeleteCacheUseCase(get()) }
 
     single { getApiClient() }
     single { RemoteMobileBankingDataSource(get()) }
@@ -44,7 +45,13 @@ val launchModule = module {
 
 val loginModule = module {
     factory { LoginUseCase(get()) }
-    viewModel { LoginViewModel() }
+    viewModel { LoginViewModel(get()) }
+}
+
+val homeModule = module {
+    factory { GetAccountDetailsUseCase(get()) }
+    factory { GetTransactionDetailsUseCase(get()) }
+    viewModel { HomeViewModel(get(), get(), get()) }
 }
 
 val coroutinesModule = module {
@@ -64,7 +71,7 @@ val databaseModule = module {
 val Dispatchers.io: CoroutineDispatcher
     get() = getKoin().get(named("io"))
 
-val Dispatchers.main: CoroutineDispatcher
+val Dispatchers.main: MainCoroutineDispatcher
     get() = getKoin().get(named("main"))
 
 val Dispatchers.default: CoroutineDispatcher

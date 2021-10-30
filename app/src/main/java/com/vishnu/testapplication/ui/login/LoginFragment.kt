@@ -5,11 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.vishnu.testapplication.R
 import com.vishnu.testapplication.domain.Result
 import com.vishnu.testapplication.databinding.LoginFragmentBinding
 import com.vishnu.testapplication.domain.EventObserver
+import com.vishnu.testapplication.ui.ActivityNavigation.navigateToHome
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -34,7 +33,7 @@ class LoginFragment : Fragment() {
                     // show error
                 }
                 is Result.Success -> {
-                    findNavController().navigate(R.id.loginFragment)
+                    requireActivity().navigateToHome(isRoot = true)
                 }
             }
         })
