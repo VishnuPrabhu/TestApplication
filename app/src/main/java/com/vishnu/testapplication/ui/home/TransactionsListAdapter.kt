@@ -5,10 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.vishnu.testapplication.data.Transaction
 import com.vishnu.testapplication.data.TransactionSummary
 import com.vishnu.testapplication.databinding.TransactionListItemBinding
-import com.vishnu.testapplication.domain.util.toNumber
+import com.vishnu.testapplication.ui.util.ACCOUNT_NUMBER_FORMATTER
 
 class TransactionsListAdapter : ListAdapter<TransactionSummary, TransactionViewHolder>(TransactionDiff()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
@@ -34,6 +33,11 @@ private class TransactionDiff : DiffUtil.ItemCallback<TransactionSummary>() {
 }
 
 class TransactionViewHolder(val binding: TransactionListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    init {
+        binding.accountNumber.addTextChangedListener(ACCOUNT_NUMBER_FORMATTER)
+    }
+
     fun bind(item: TransactionSummary) {
         binding.viewmodel = item
         binding.executePendingBindings()

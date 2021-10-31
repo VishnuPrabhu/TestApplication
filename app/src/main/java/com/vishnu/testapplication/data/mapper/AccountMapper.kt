@@ -30,7 +30,7 @@ object TransactionsMapper {
             date = it.date.convertDate(YYYYMMDDHHMMSS, DD_MMM),
             amount = amount.toCurrencyAmount(it.currency.orEmpty()),
             payeeName = it.details?.accountHolderName.orEmpty(),
-            payeeAccountNumber = it.details?.accountHolderName.orEmpty(),
+            payeeAccountNumber = it.details?.accountNo.orEmpty(),
             description = it.description.orEmpty()
         )
     }
