@@ -100,3 +100,13 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+.idea/misc.xml
+.idea/compiler.xml
+.idea/codeStyles/Project.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/misc.xml
+.idea/compiler.xml
+.idea/misc.xml
+.idea/compiler.xml
+.idea/misc.xml
+.idea/compiler.xml

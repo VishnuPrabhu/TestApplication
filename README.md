@@ -9,26 +9,40 @@ This application has the following screens:
 4. home screen
 5. transfer screen
 
+
+#### MAD SCORE
+------------
+Below is the MAD Score for this project
+
+<img src="mad_scorecard/summary.png" width="100" />
+<img src="mad_scorecard/jetpack.png" width="100" />
+<img src="mad_scorecard/kotlin.png" width="100" />
+<img src="mad_scorecard/studio.png" width="100" />
+
+
 #### Launch Screen
 ------------
 The Launch screen is shown, when the app is doing initial setup and initializations. In this case, it will show for a seconds.
 It checks if the user is first-time visiting the application or already visited. If it is first time, then we will show the Welcome screen.
-![Android Launch Screen](screenshots/o1.jpeg)
+
+<img src="screenshots/o1.jpeg" width="100" />
 
 #### Welcome Screen
 ------------
 The Welcome screen is shown for the first time to user to introduce the new features and the products.
-The login button will be enabled only if,
-- User name must be greater than 3 digits
-- password must be greater than 3 digits
-![Android Welcome Screen](screenshots/o2.jpeg)
+
+<img src="screenshots/o2.jpeg" width="100" />
   
 #### Login Screen
 ------------
 The Login screen, is useful to enter the application with username and password. Here the valid-mock username is **ocbc** and password is **123456**. Other values are invalid.
 
-![Android Login Screen](screenshots/o3.jpeg)
-![Android Login Screen](screenshots/o4.jpeg)
+The login button will be enabled only if,
+- User name must be greater than 3 digits
+- password must be greater than 3 digits
+
+<img src="screenshots/o3.jpeg" width="100" /> 
+<img src="screenshots/o4.jpeg" width="100" />
 
 #### Home Screen
 ------------
@@ -39,9 +53,10 @@ It also features, **refresh** and **logout** actions.
 The user can either do **swipe to refresh** or click on the **refresh** button.
 
 The **make a transfer** button will navigate to the transfer screen
-![Android Home Screen](screenshots/o5.jpeg)
-![Android Home Screen](screenshots/o6.jpeg)
-![Android Home Screen](screenshots/o10.jpeg)
+
+<img src="screenshots/o5.jpeg" width="100" />
+<img src="screenshots/o6.jpeg" width="100" />
+<img src="screenshots/o10.jpeg" width="100" />
 
 #### Transfer Screen
 ------------
@@ -56,9 +71,10 @@ Only after the user enters values for these fields, the transfer button will be 
 
 **When you make a transfer, the result is shown in a dialog.**
 
-![Android Transfer Screen](screenshots/o7.jpeg)
-![Android Transfer Screen](screenshots/o8.jpeg)
-![Android Transfer Screen](screenshots/o9.jpeg)
+
+<img src="screenshots/o7.jpeg" width="100" />
+<img src="screenshots/o8.jpeg" width="100" />
+<img src="screenshots/o9.jpeg" width="100" />
 
 ## If the transaction is success, then the repository data is invalidated, so when you go back to the HomeScreen, it wil refresh the account balance again.
 
