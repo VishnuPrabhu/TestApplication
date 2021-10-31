@@ -14,7 +14,7 @@ This application has the following screens:
 ------------
 Below is the MAD Score for this project
 
-<img src="mad_scorecard/summary.png" width="100" />
+<img src="mad_scorecard/summary.png" />
 <img src="mad_scorecard/jetpack.png" width="100" />
 <img src="mad_scorecard/kotlin.png" width="100" />
 <img src="mad_scorecard/studio.png" width="100" />
