@@ -37,9 +37,11 @@ class LoginFragment : Fragment() {
                 }
                 is Result.Error -> {
                     hideProgress()
+                    viewmodel.password.value = ""
                     showErrorDialog(requireActivity(), it.exception.localizedMessage.orEmpty(), getString(R.string.ok))
                 }
                 is Result.Success -> {
+                    viewmodel.password.value = ""
                     hideProgress()
                     requireActivity().navigateToHome(isRoot = true)
                 }

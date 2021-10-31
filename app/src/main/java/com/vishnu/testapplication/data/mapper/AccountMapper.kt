@@ -26,10 +26,12 @@ object TransactionsMapper {
             it.amount.toNumber()
         }.toNumberString()
         return TransactionSummary(
-            it.id.orEmpty(),
-            it.date.convertDate(YYYYMMDDHHMMSS, DD_MMM),
-            it.description.orEmpty(),
-            amount.toCurrencyAmount(it.currency.orEmpty())
+            id = it.id.orEmpty(),
+            date = it.date.convertDate(YYYYMMDDHHMMSS, DD_MMM),
+            amount = amount.toCurrencyAmount(it.currency.orEmpty()),
+            payeeName = it.details?.accountHolderName.orEmpty(),
+            payeeAccountNumber = it.details?.accountHolderName.orEmpty(),
+            description = it.description.orEmpty()
         )
     }
 }

@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
 
     private fun setUpTransactionsList() {
         binding.transactionsListView.adapter = TransactionsListAdapter()
-        binding.transactionsListView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+        //binding.transactionsListView.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         viewModel.transactions.observe(viewLifecycleOwner, Observer {
             binding.swipeRefreshLayout.isRefreshing = false
             binding.noItemsView.isVisible = it.isEmpty()

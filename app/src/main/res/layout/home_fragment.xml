@@ -111,7 +111,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/transactionsListView"
                 android:layout_width="match_parent"
+                tools:listitem="@layout/transaction_list_item"
+                tools:itemCount="2"
                 android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="64dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
@@ -124,7 +128,7 @@
                 android:padding="24dp"
                 android:visibility="gone"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:visibility="visible">
+                tools:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"

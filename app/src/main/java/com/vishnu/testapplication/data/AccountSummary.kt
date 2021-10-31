@@ -14,9 +14,11 @@ data class AccountSummary(
 @Keep
 data class TransactionSummary(
     val id: String = "",
-    val date: String = "",
-    val description: String = "",
+    var date: String = "",
     val amount: String = "",
+    val payeeName: String = "",
+    val payeeAccountNumber: String = "",
+    val description: String = "",
 )
 
 @Parcelize
@@ -25,4 +27,4 @@ data class Payee(
     val id: String,
     val accountHolderName: String,
     val accountNo: String
-): Parcelable
+) : Parcelable

@@ -21,20 +21,14 @@ data class Transaction(
     val currency: String?,
     val date: String?,
     val description: String?,
-    val from: From?,
+    @SerializedName("from", alternate = ["to"])
+    val details: Details?,
     val id: String?,
-    val to: To?,
     val type: String?
 )
 
 @Keep
-data class From(
-    val accountHolderName: String,
-    val accountNo: String
-)
-
-@Keep
-data class To(
+data class Details(
     val accountHolderName: String,
     val accountNo: String
 )
