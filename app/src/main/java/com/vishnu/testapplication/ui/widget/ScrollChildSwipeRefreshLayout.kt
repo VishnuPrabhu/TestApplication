@@ -21,20 +21,11 @@ class ScrollChildSwipeRefreshLayout @JvmOverloads constructor(
     override fun canChildScrollUp() =
         scrollUpChild?.canScrollVertically(-1) ?: super.canChildScrollUp()
 
-//    override fun onNestedScroll(target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int) {
-//        if (isEnabled) {
-//            // Dispatch up to the nested parent
-//            dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dxConsumed, null)
-//        } else {
-//            dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, null)
-//        }
-//    }
-//
-//    fun setCanRefresh(enabled: Boolean) {
-//        mCanRefresh = enabled
-//        isEnabled = mAppbarExtended && mCanRefresh
-//    }
-//
+    fun setCanRefresh(enabled: Boolean) {
+        canRefresh = enabled
+        isEnabled = appbarExtended && canRefresh
+    }
+
     override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
         appbarExtended = verticalOffset == 0
         isEnabled = appbarExtended && canRefresh

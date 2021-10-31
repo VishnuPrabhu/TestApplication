@@ -54,8 +54,9 @@ The user can either do **swipe to refresh** or click on the **refresh** button.
 
 The **make a transfer** button will navigate to the transfer screen
 
+<img src="screenshots/o6.jpg" width="100" />
+<img src="screenshots/o7.jpg" width="100" />
 <img src="screenshots/o5.jpeg" width="100" />
-<img src="screenshots/o6.jpeg" width="100" />
 <img src="screenshots/o10.jpeg" width="100" />
 
 #### Transfer Screen
