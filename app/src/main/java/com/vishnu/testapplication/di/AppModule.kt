@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
 import com.vishnu.testapplication.data.source.DefaultDataSource
-import com.vishnu.testapplication.data.source.MobileBankingApiClient.getApiClient
+import com.vishnu.testapplication.data.source.getApiClient
 import com.vishnu.testapplication.data.source.MobileBankingRepository
 import com.vishnu.testapplication.data.source.local.LocalMobileBankingDataSource
 import com.vishnu.testapplication.data.source.local.SessionDatabase
