@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.vishnu.testapplication.ui.home.TransferViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:logo="@drawable/logo_uob" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="24dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/payee"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:hint="@string/hint_recipient"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:endIconMode="none"
+                    app:errorEnabled="true"
+                    app:helperText="@string/helper_recipient"
+                    app:helperTextEnabled="true"
+                    app:helperTextTextColor="?attr/textColorPrimary"
+                    app:hintTextColor="?attr/textColorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:placeholderText="@string/hint_recipient"
+                    app:startIconDrawable="@drawable/ic_username_login"
+                    tools:layout_editor_absoluteY="56dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/payeeEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:text="@{viewModel.transferPayee.accountHolderName}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/calendarLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/hint_date"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:endIconMode="none"
+                    app:errorEnabled="true"
+                    app:helperText="@string/helper_calendar"
+                    app:helperTextEnabled="true"
+                    app:helperTextTextColor="?attr/textColorPrimary"
+                    app:hintTextColor="?attr/textColorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/payee"
+                    app:placeholderText="@string/hint_date"
+                    app:startIconDrawable="@drawable/ic_calendar">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/calendarEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:text="@{viewModel.transferDate}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/comments"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/hint_comments"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:endIconMode="none"
+                    app:errorEnabled="true"
+                    app:helperText="@string/helper_comments"
+                    app:helperTextEnabled="true"
+                    app:helperTextTextColor="?attr/textColorPrimary"
+                    app:hintTextColor="?attr/textColorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calendarLayout"
+                    app:placeholderText="@string/hint_comments"
+                    app:startIconDrawable="@drawable/ic_comments">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="text|textNoSuggestions"
+                        android:text="@={viewModel.transferComments}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/amount"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/hint_amount"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:endIconMode="none"
+                    app:errorEnabled="true"
+                    app:helperText="@string/helper_amount"
+                    app:helperTextEnabled="true"
+                    app:helperTextTextColor="?attr/textColorPrimary"
+                    app:hintTextColor="?attr/textColorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/comments"
+                    app:placeholderText="@string/hint_amount"
+                    app:prefixText="@string/currency"
+                    app:prefixTextColor="?attr/textColorPrimary"
+                    app:startIconDrawable="@drawable/ic_amount">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:text="@={viewModel.transferAmount}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTransfer"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    android:enabled="@{viewModel.isSubmitButtonEnabled}"
+                    android:onClick="@{() -> viewModel.transferAmount()}"
+                    android:text="@string/btn_transfer"
+                    android:textColor="?attr/colorOnPrimary"
+                    app:backgroundTint="@color/selector_btn_login"
+                    app:cornerRadius="8dp"
+                    app:icon="@drawable/ic_send"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

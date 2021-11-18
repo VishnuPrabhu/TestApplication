@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.vishnu.testapplication.domain.util.StringUtilsKt" />
+
+        <variable
+            name="viewmodel"
+            type="com.vishnu.testapplication.data.Payee" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:width="80dp"
+            android:drawablePadding="24dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text='@{viewmodel.accountHolderName ?? ""}'
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/ic_username_login"
+            tools:text="Payee name" />
+
+        <TextView
+            android:id="@+id/accountNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:width="80dp"
+            android:drawablePadding="24dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="48dp"
+            android:text='@{viewmodel.accountNo ?? ""}'
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textStyle="normal"
+            tools:text="1234567890" />
+
+    </LinearLayout>
+</layout>

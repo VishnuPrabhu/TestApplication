@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_login.xml"
+    app:startDestination="@id/launchFragment">
+
+    <fragment
+        android:id="@+id/launchFragment"
+        android:name="com.vishnu.testapplication.ui.login.LaunchFragment"
+        android:label="launch_fragment"
+        tools:layout="@layout/launch_fragment">
+
+        <action
+            android:id="@+id/action_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/launchFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_welcome"
+            app:destination="@id/welcomeFragment"
+            app:popUpTo="@id/launchFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.vishnu.testapplication.ui.login.LoginFragment"
+        android:label="LoginFragment" />
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.vishnu.testapplication.ui.welcome.WelcomeFragment"
+        android:label="WelcomeFragment">
+        <action
+            android:id="@+id/action_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/welcomeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
