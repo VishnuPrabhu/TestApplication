@@ -1,5 +1,6 @@
 package com.vishnu.testapplication.domain.util
 
+import android.text.Editable
 import com.vishnu.testapplication.ui.Constants.CURRENCY_CODE
 import java.util.*
 
@@ -10,6 +11,11 @@ fun String?.toCurrencyAmount(currencyCode: String = CURRENCY_CODE): String {
 fun String?.toAmount(): String {
     val amount = if (this.isNullOrEmpty()) "0" else this
     return amount.toDoubleOrNull()?.formatAmount() ?: "0"
+}
+
+fun Editable?.toEditableAmount(): String {
+    val amount = if (this.isNullOrEmpty()) "0" else this
+    return amount.toString().toDoubleOrNull()?.formatAmount() ?: "0"
 }
 
 fun Double.formatAmount(): String {

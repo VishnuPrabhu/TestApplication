@@ -151,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:imeOptions="actionDone"
                         android:inputType="numberDecimal"
-                        android:text="@={viewModel.transferAmount}" />
+                        app:amount="@={viewModel.transferAmount}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 

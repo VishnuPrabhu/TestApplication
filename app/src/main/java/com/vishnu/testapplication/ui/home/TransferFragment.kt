@@ -7,14 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.core.os.bundleOf
+import androidx.core.widget.doAfterTextChanged
+import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputEditText
 import com.vishnu.testapplication.R
 import com.vishnu.testapplication.data.Payee
 import com.vishnu.testapplication.databinding.TransferFragmentBinding
 import com.vishnu.testapplication.domain.EventObserver
+import com.vishnu.testapplication.domain.util.toAmount
+import com.vishnu.testapplication.domain.util.toEditableAmount
 import com.vishnu.testapplication.ui.DialogsController.showAlertDialog
 import com.vishnu.testapplication.ui.DialogsController.showErrorDialog
 import com.vishnu.testapplication.ui.FragmentNavigationController.hideProgress
@@ -137,3 +144,25 @@ class TransferFragment : Fragment() {
         }
     }
 }
+
+@BindingAdapter("amount")
+fun TextInputEditText.amount(value: String) {
+    if (this.text.toString() != value) {
+        val formatAmount = value.toAmount()
+        this.setText(formatAmount)
+        this.setSelection(formatAmount.count())
+    }
+}
+
+@InverseBindingAdapter(attribute = "amount", event = "app:amountAttrChanged")
+fun TextInputEditText.getAmount(): String {
+    return text.toString()
+}
+
+@BindingAdapter("app:amountAttrChanged")
+fun TextInputEditText.textChanged(textChanged: InverseBindingListener) {
+    doAfterTextChanged {
+        textChanged.onChange()
+    }
+}
+

@@ -7,8 +7,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.gson.Gson
-import com.vishnu.testapplication.data.source.MobileBankingApiClient
-import com.vishnu.testapplication.data.source.MobileBankingApiClient.createMock
+import com.vishnu.testapplication.data.BankingApiClient.createMock
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

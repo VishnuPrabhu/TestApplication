@@ -70,7 +70,9 @@ class TransferViewModel(
     fun validate() {
         isSubmitButtonEnabled.value = transferPayee.value?.accountHolderName.isNotNullOrEmpty() &&
                                       transferDate.value.isNotNullOrEmpty() &&
-                                      (transferAmount.value.isNotNullOrEmpty() && transferAmount.value.orEmpty().toNumber() > 0)
+                                      (transferAmount.value.isNotNullOrEmpty() &&
+                                        transferAmount.value.orEmpty().toNumber() > 0 &&
+                                        transferAmount.value.orEmpty().toNumber() > 100)
     }
 
     fun transferAmount() = viewModelScope.launch(Dispatchers.main) {

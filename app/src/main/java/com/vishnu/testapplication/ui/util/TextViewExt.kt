@@ -26,7 +26,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter("app:textVisible")
+@BindingAdapter("textVisible")
 fun TextView.setTextVisible(value: String) {
     text = value
     isVisible = value.isNotEmpty()
