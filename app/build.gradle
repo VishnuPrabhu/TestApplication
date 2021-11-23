@@ -59,6 +59,10 @@ android {
     buildFeatures {
         viewBinding true
         dataBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.0.5'
     }
 
     addTestOptions()
@@ -76,6 +80,7 @@ dependencies {
 
     implementation deps.app.values()
     implementation deps.androidx.values()
+    implementation deps.compose.values()
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt deps.kapt.values()
 
