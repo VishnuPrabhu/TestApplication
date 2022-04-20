@@ -1,0 +1,190 @@
+# Sharing Versions
+# https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog-declaration
+
+[versions]
+compileSdkVersion = "31"
+minSdkVersion = "28"
+targetSdkVersion = "31"
+versionCode = "1"
+versionName = "1.0"
+
+# gradlePlugin and lint need to be updated together
+agp = "7.1.2"
+lintMinCompose = "30.0.0"
+
+biometricVersion = "1.2.0-alpha04"
+compose = "1.2.0-alpha07"
+composeMaterial3 = "1.0.0-alpha09"
+composesnapshot = "-" # a single character = no snapshot
+datastore = "1.0.0"
+lifecycle = "2.5.0-alpha06"
+
+accompanist = "0.24.5-alpha"
+accompanistPager = "0.24.4"
+
+hilt = "2.41"
+
+ktlint = "0.42.1"
+kotlin = "1.6.10"
+coroutines = "1.6.0"
+okhttp = "3.12.13"
+coil = "1.3.2"
+
+androidxtest = "1.4.0"
+navigation = "2.4.2"
+room = "2.4.2"
+
+espresso = "3.2.0-beta01"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+androidx-navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "10.2.1" }
+moshiX = { id = "dev.zacsweers.moshix", version = "0.17.1" }
+
+[libraries]
+compose-ui-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-util = { module = "androidx.compose.ui:ui-util", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
+compose-foundation-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout", version.ref = "compose" }
+compose-material-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-material-material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
+compose-material-iconsext = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+compose-animation-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
+compose-themeAdapter = { module = "com.google.android.material:compose-theme-adapter", version.ref = "compose" }
+
+snapper = "dev.chrisbanes.snapper:snapper:0.2.0"
+
+android-gradlePlugin-tool = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+gradleMavenPublishPluginTool = "com.vanniktech:gradle-maven-publish-plugin:0.17.0"
+metalavaGradle = "me.tylerbwong.gradle:metalava-gradle:0.1.9"
+
+glide = "com.github.bumptech.glide:glide:4.12.0"
+
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-stdlibJdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-gradlePluginTool = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-metadataJvm = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.3.0"
+
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+dokka = "org.jetbrains.dokka:dokka-gradle-plugin:1.5.0"
+
+okhttp-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttp-mockWebServer = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp" }
+
+coil-coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+
+androidx-appcompat = "androidx.appcompat:appcompat:1.4.1"
+androidx-core = "androidx.core:core-ktx:1.8.0-alpha06"
+androidx-core-splashscreen = "androidx.core:core-splashscreen:1.0.0-beta02"
+androidx-activity = "androidx.activity:activity-ktx:1.4.0"
+androidx-activity-compose = "androidx.activity:activity-compose:1.4.0"
+androidx-material = "com.google.android.material:material:1.5.0"
+
+androidx-cardview = "androidx.cardview:cardview:1.0.0"
+androidx-recyclerView = "androidx.recyclerview:recyclerview:1.2.1"
+androidx-recyclerViewSelection = "androidx.recyclerview:recyclerview-selection:1.1.0"
+androidx-annotations = "androidx.annotation:annotation:1.2.0"
+
+androidx-biometric = { module = "androidx.biometric:biometric-ktx", version.ref = "biometricVersion" }
+
+androidx-datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
+androidx-fragment = "androidx.fragment:fragment-ktx:1.4.0"
+androidx-dynamicanimation = "androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03"
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycle" }
+
+androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigation" }
+
+androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.3"
+androidx-constraintlayout-compose = "androidx.constraintlayout:constraintlayout-compose:1.0.0"
+
+androidx-hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+androidx-hilt-navigation-compose = "androidx.hilt:hilt-navigation-compose:1.0.0-beta01"
+androidx-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+androidx-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+
+androidx-room = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+
+google-accompanist-flowlayout = { module = "com.google.accompanist:accompanist-flowlayout", version.ref = "accompanist" }
+google-accompanist-insets = { module = "com.google.accompanist:accompanist-insets", version.ref = "accompanist" }
+ca-accompanist-pager = { module = "ca.gosyer:accompanist-pager", version.ref = "accompanistPager" }
+ca-accompanist-pager-indicators = { module = "ca.gosyer:accompanist-pager-indicators", version.ref = "accompanistPager" }
+google-accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanist" }
+google-accompanist-navigation-animation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
+google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+google-glide = "com.github.skydoves:landscapist-glide:1.4.4"
+
+napier = "io.github.aakira:napier:1.4.1"
+
+androidx-test-core = { module = "androidx.test:core-ktx", version.ref = "androidxtest" }
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxtest" }
+androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidxtest" }
+androidx-test-orchestrator = { module = "androidx.test:orchestrator", version.ref = "androidxtest" }
+androidx-test-uiAutomator = "androidx.test.uiautomator:uiautomator:2.2.0"
+androidx-test-espressoWeb = "androidx.test.espresso:espresso-web:3.4.0"
+
+junit = "junit:junit:4.13"
+truth = "com.google.truth:truth:1.1.2"
+robolectric = "org.robolectric:robolectric:4.5.1"
+
+affectedmoduledetector = "com.dropbox.affectedmoduledetector:affectedmoduledetector:0.1.2"
+
+android-tools-build-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+android-tools-lint-lint = { module = "com.android.tools.lint:lint", version.ref = "lintMinCompose" }
+android-tools-lint-api = { module = "com.android.tools.lint:lint-api", version.ref = "lintMinCompose" }
+android-tools-lint-tests = { module = "com.android.tools.lint:lint-tests", version.ref = "lintMinCompose" }
+
+# ThirdParty Custom Libs
+
+squareup-mockwebserver = "com.squareup.okhttp3:mockwebserver:4.9.3"
+squareup-retrofit2 = "com.squareup.retrofit2:retrofit:2.9.0"
+squareup-retrofit2-gson = "com.squareup.retrofit2:converter-gson:2.9.0"
+squareup-retrofit2-mock = "com.squareup.retrofit2:retrofit-mock:2.9.0"
+squareup-okhttp3 = "com.squareup.okhttp3:okhttp:4.9.3"
+squareup-okhttp3-logging-interceptor = "com.squareup.okhttp3:logging-interceptor:4.9.3"
+squareup-timber = "com.jakewharton.timber:timber:4.7.1"
+
+mpAndroidChart = "com.github.PhilJay:MPAndroidChart:v3.1.0"
+
+androidx-test-espressoIdlingResource = { module = "androidx.test.espresso:espresso-idling-resource", version.ref = "espresso" }
+
+
+[bundles]
+androidX-constraintlayout = ["androidx-constraintlayout", "androidx-constraintlayout-compose"]
+androidX-datastore = ["androidx-datastore-core", "androidx-datastore-preferences"]
+compose = ["compose-ui-ui", "compose-ui-util", "compose-ui-tooling", "compose-ui-tooling-preview", "compose-material-material", "compose-material-material3", "compose-themeAdapter"]
+google-accompanist = ["google-accompanist-flowlayout", "google-accompanist-insets", "ca-accompanist-pager", "ca-accompanist-pager-indicators",
+    "google-accompanist-navigation", "google-accompanist-navigation-animation", "google-accompanist-systemuicontroller"]
+squareup-retrofit = ["squareup-retrofit2", "squareup-retrofit2-gson", "squareup-retrofit2-mock", "squareup-okhttp3", "squareup-okhttp3-logging-interceptor"]
+kotlin-coroutines = ["kotlin-coroutines-core", "kotlin-coroutines-android"]
+
+kapt-hilt-compiler = ["androidx-hilt-compiler", "androidx-hilt-android-compiler"]
+
+
+
