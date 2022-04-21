@@ -1,6 +1,12 @@
 @file:Suppress("UnstableApiUsage")
 
 pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            println("pl ${this.requested} == ${this.target}")
+        }
+    }
+
     repositories {
         google()
         mavenCentral()

@@ -1,87 +1,10 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.kotlin.parcelize)
-    //alias(libs.plugins.hilt)
-    alias(libs.plugins.androidx.navigation.safeargs)
-}
-
-android {
-    val compileSdkVersion: Int = libs.versions.compileSdkVersion.get().toInt()
-    val minSdkVersion: Int = libs.versions.minSdkVersion.get().toInt()
-    val targetSdkVersion: Int = libs.versions.targetSdkVersion.get().toInt()
-    val appVersionCode: Int = libs.versions.versionCode.get().toInt()
-    val appVersionName: String = libs.versions.versionName.get()
-
-    compileSdk = compileSdkVersion
-
-    defaultConfig {
-        applicationId = "com.vishnu.testapplication"
-        minSdk = minSdkVersion
-        targetSdk = targetSdkVersion
-        versionCode = appVersionCode
-        versionName = appVersionName
-
-        testInstrumentationRunner = "com.quaffie.ibanking.CFETestRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-    }
-
-    buildTypes {
-        getByName("debug") {
-            isMinifyEnabled = false
-            isTestCoverageEnabled = false
-        }
-        getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
-                "proguard-rules.pro"
-            )
-        }
-        create("staging") {
-            // For CI/CD - Jenkins
-            isMinifyEnabled = false
-            isTestCoverageEnabled = true
-        }
-    }
-
-    /**
-     * The productFlavors block is where you can configure multiple COUNTRY product flavors.
-     */
-    flavorDimensions += listOf("releaseType")
-    productFlavors {
-        create("mock") {
-            buildConfigField("String", "MOCK_ENABLE", "\"true\"")
-            dimension = "releaseType"
-            applicationIdSuffix = ".mock"
-        }
-        create("prod") {
-            buildConfigField("String", "MOCK_ENABLE", "\"false\"")
-            dimension = "releaseType"
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        viewBinding = true
-        dataBinding = true
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
-    }
-
-    addTestOptions()
-    ignoreMockRelease()
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
+    id("org.jetbrains.kotlin.plugin.parcelize")
+    //id("com.google.dagger.hilt.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 dependencies {
@@ -154,35 +77,14 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
 
-fun addTestOptions() {
-    // Always show the result of every unit test, even if it passes.
-    android.testOptions.unitTests {
-        isIncludeAndroidResources = true
 
-        all {
-            it.testLogging {
-                setEvents(setOf("passed", "skipped", "failed", "standardOut", "standardError"))
-            }
-        }
-    }
-}
 
 // Filter variants - https://developer.android.com/studio/build/gradle-tips#filter-variants
 fun ignoreMockRelease() {
     // Remove mockRelease as it's not needed.
     androidComponents {
         beforeVariants { variantBuilder ->
-            // hide the staging build type and china country flavor for now.
-            if (variantBuilder.buildType.equals("release")
-                && variantBuilder.productFlavors[0].first == "mock"
-            ) {
-                variantBuilder.enable = false
-            }
-            if (variantBuilder.buildType.equals("staging")
-                && variantBuilder.productFlavors[0].first == "prod"
-            ) {
-                variantBuilder.enable = false
-            }
+
         }
     }
 }
