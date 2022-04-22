@@ -1,4 +1,6 @@
 import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.AppExtension
+import com.android.build.gradle.LibraryExtension
 import dagger.hilt.android.plugin.HiltExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -16,12 +18,11 @@ plugins {
 
 // Delete Task
 tasks.register("clean", Delete::class) {
-    println("===> ${rootProject.buildDir}")
     delete(rootProject.buildDir)
 }
 
 subprojects {
-    plugins.applyBaseConfig(project)
+    plugins.applyAndroidConfig(project)
 
     plugins.withId(rootProject.libs.plugins.hilt.get().pluginId) {
         configure<HiltExtension> {
@@ -33,14 +34,15 @@ subprojects {
 /**
  * Apply configuration settings that are shared across all modules.
  */
-fun PluginContainer.applyBaseConfig(project: Project) {
+fun PluginContainer.applyAndroidConfig(project: Project) {
     whenPluginAdded {
         when (this) {
             is com.android.build.gradle.AppPlugin -> {
                 project.extensions.run {
                     getByType<com.android.build.gradle.AppExtension>()
                         .apply {
-                            baseConfig()
+                            baseConfig(project)
+                            appConfig(project)
                         }
                 }
             }
@@ -48,14 +50,15 @@ fun PluginContainer.applyBaseConfig(project: Project) {
                 project.extensions
                     .getByType<com.android.build.gradle.LibraryExtension>()
                     .apply {
-                        baseConfig()
+                        baseConfig(project)
+                        libConfig(project)
                     }
             }
         }
     }
 }
 
-fun BaseExtension.baseConfig() {
+fun BaseExtension.baseConfig(project: Project) {
     val compileSdkVersion: Int = libs.versions.compileSdkVersion.get().toInt()
     val minSdkVersion: Int = libs.versions.minSdkVersion.get().toInt()
     val targetSdkVersion: Int = libs.versions.targetSdkVersion.get().toInt()
@@ -65,9 +68,6 @@ fun BaseExtension.baseConfig() {
     compileSdkVersion(compileSdkVersion)
 
     defaultConfig.apply {
-        namespace = "com.vishnu.testapplication.$name"
-        applicationId = "com.vishnu.testapplication"
-
         minSdk = minSdkVersion
         targetSdk = targetSdkVersion
         versionCode = appVersionCode
@@ -106,7 +106,6 @@ fun BaseExtension.baseConfig() {
         create("mock") {
             buildConfigField("String", "MOCK_ENABLE", "\"true\"")
             dimension = "releaseType"
-            applicationIdSuffix = ".mock"
         }
         create("prod") {
             buildConfigField("String", "MOCK_ENABLE", "\"false\"")
@@ -132,7 +131,7 @@ fun BaseExtension.baseConfig() {
         viewBinding = true
     }
 
-    dataBinding.apply {
+    dataBinding {
         isEnabled = true
     }
 
@@ -167,4 +166,20 @@ fun BaseExtension.baseConfig() {
             ignore = true
         }
     }
+}
+
+fun AppExtension.appConfig(project: Project) {
+    defaultConfig {
+        applicationId = "com.vishnu.testapplication"
+    }
+
+    productFlavors {
+        getByName("mock") {
+            applicationIdSuffix = ".mock"
+        }
+    }
+}
+
+fun LibraryExtension.libConfig(project: Project) {
+    namespace = "com.vishnu.testapplication.${project.name}"
 }

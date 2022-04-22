@@ -1,10 +1,10 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
-    id("org.jetbrains.kotlin.plugin.parcelize")
-    //id("com.google.dagger.hilt.android")
-    id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.androidx.navigation.safeargs)
+    alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.hilt)
 }
 
 dependencies {
@@ -75,16 +75,4 @@ dependencies {
 //    testImplementation deps . testArtifacts . values ()
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-}
-
-
-
-// Filter variants - https://developer.android.com/studio/build/gradle-tips#filter-variants
-fun ignoreMockRelease() {
-    // Remove mockRelease as it's not needed.
-    androidComponents {
-        beforeVariants { variantBuilder ->
-
-        }
-    }
 }
